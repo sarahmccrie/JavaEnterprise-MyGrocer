@@ -1,0 +1,65 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Customer Info Page</title>
+		<!-- Author:      Sarah McCrie 991405606
+        Program:      A3_mccries
+        Date:         [11-23-2023]
+        Version:      1.0     
+        Description:  This is my assignment 3
+    -->
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<div class="linkHolder">
+		<p><a href="#" th:href="@{/secure}">Home</a></p>
+		<p><a href="#" th:href="@{/secure/customer}">Customer </a></p>
+		<p><a href="#" th:href="@{/secure/order}">Order</a></p>
+		<p><a href="#" th:href="@{/secure/product}">Product</a></p>
+		<p><a href="#" th:href="@{/secure/address}">Address</a></p>
+		<p><a href="#" th:href="@{/adminSecure/customerlist}">Customer list</a></p>
+		<p><a href="#" th:href="@{/adminSecure/productlist}">Product list</a></p>
+		<p><a href="#" th:href="@{/secure/shoppingcart}">Shopping cart</a></p>
+		<form method="post" th:action="@{/logout}">
+			<input class="logoutButton" type="submit" value="Logout" />
+		</form>
+	</div>
+
+	<img class="groceryBanner" th:src="@{/images/groban.jpg}" alt="Grocery Image" />
+	<h1>Customer Info</h1>
+	
+	
+	<div class="formarea">
+		<form method="post" action="#" th:action="@{/secure/customer}"     th:object="${customer}">
+
+			<div class="labelAndInput"> <label class="label">Customer ID:</label> <input type="number" th:field="*{customerId}"
+					class="doNotTouch" readonly min="0" required="required" /> </div>
+			<br>
+
+			<div class="labelAndInput"> <label class="label">First Name:</label> <input type="text"
+					placeholder="Please enter your first name" th:field="*{firstName}" />
+			</div> <br>
+
+			<div class="labelAndInput"> <label class="label">Last Name:</label> <input type="text"
+					placeholder="Please enter your last name" th:field="*{lastName}" /> </div> <br>
+					
+			<div style="display:hidden" class="labelAndInput"> <label class="label">User ID:</label> <input type="number" th:field="*{userId}"
+					class="doNotTouch" readonly min="0" required="required" /> </div>
+
+			<br>
+
+
+			<input type="submit" class="saveCustomerInfo" value="Save Customer Info!" id="saveCustomerInfo" />
+
+		</form>
+	</div>
+	
+
+
+</body>
+
+
+
+</html>

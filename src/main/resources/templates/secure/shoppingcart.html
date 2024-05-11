@@ -1,0 +1,70 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Shopping Cart</title>
+	<!-- Author:      Sarah McCrie 991405606
+        Program:      A3_mccries
+        Date:         [11-23-2023]
+        Version:      1.0     
+        Description:  This is my assignment 3
+    -->
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<div class="linkHolder">
+		<p><a href="#" th:href="@{/secure}">Home</a></p>
+		<p><a href="#" th:href="@{/secure/customer}">Customer </a></p>
+		<p><a href="#" th:href="@{/secure/order}">Order</a></p>
+		<p><a href="#" th:href="@{/secure/product}">Product</a></p>
+		<p><a href="#" th:href="@{/secure/address}">Address</a></p>
+		<p><a href="#" th:href="@{/adminSecure/customerlist}">Customer list</a></p>
+		<p><a href="#" th:href="@{/adminSecure/productlist}">Product list</a></p>
+		<p><a href="#" th:href="@{/secure/shoppingcart}">Shopping cart</a></p>
+		<form method="post" th:action="@{/logout}">
+			<input class="logoutButton" type="submit" value="Logout" />
+		</form>
+	</div>
+
+	<img class="groceryBanner" th:src="@{/images/groban.jpg}" alt="Grocery Image" />
+	<h1>Cart</h1>
+
+
+	<div>
+		<table>
+			<tr>
+				<th>Product ID</th>
+				<th>Product Name</th>
+				<th>Price</th>
+				<th>Delete</th>
+			</tr>
+
+			<tr th:each="aProduct : ${cartProducts}">
+				<td th:text="${aProduct.productId}"></td>
+				<td th:text="${aProduct.productName}"></td>
+				<td th:text="${aProduct.productPrice}"></td>
+				<td>
+					<form th:action="@{/secure/deleteFromCart}" method="post">
+						<input type="hidden" name="productId" th:value="${aProduct.productId}" />
+						<input type="submit" value="Delete" />
+					</form>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<th>Total:</th>
+				<th th:text="${cartTotal}"></th>
+			</tr>
+		</table>
+
+		<form th:action="@{/secure/createOrder}" method="post">
+			<input type="submit" value="Checkout" />
+		</form>
+	</div>
+</body>
+
+
+
+</html>

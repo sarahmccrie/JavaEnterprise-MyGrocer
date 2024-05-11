@@ -1,0 +1,68 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Order Page</title>
+	<!-- Author:      Sarah McCrie 991405606
+        Program:      A3_mccries
+        Date:         [11-23-2023]
+        Version:      1.0     
+        Description:  This is my assignment 3
+    -->
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<div class="linkHolder">
+		<p><a href="#" th:href="@{/secure}">Home</a></p>
+		<p><a href="#" th:href="@{/secure/customer}">Customer </a></p>
+		<p><a href="#" th:href="@{/secure/order}">Order</a></p>
+		<p><a href="#" th:href="@{/secure/product}">Product</a></p>
+		<p><a href="#" th:href="@{/secure/address}">Address</a></p>
+		<p><a href="#" th:href="@{/adminSecure/customerlist}">Customer list</a></p>
+		<p><a href="#" th:href="@{/adminSecure/productlist}">Product list</a></p>
+		<p><a href="#" th:href="@{/secure/shoppingcart}">Shopping cart</a></p>
+		<form method="post" th:action="@{/logout}">
+			<input class="logoutButton" type="submit" value="Logout" />
+		</form>
+	</div>
+
+
+	<img class="groceryBanner" th:src="@{/images/groban.jpg}" alt="Grocery Image" />
+	<h1>Order</h1>
+	<div th:if="${message}">
+		<p th:text="${message}"></p>
+	</div>
+
+	<!-- Display orders table if message is not set -->
+	<div th:unless="${message}">
+		<table>
+			<tr>
+				<th>Order ID</th>
+				<th>Date</th>
+				<th>Status</th>
+				<th>Customer ID</th>
+				<th>Amount</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+
+			<tr th:each="aOrder:${orderlist}">
+				<td th:text="${aOrder.orderId}"></td>
+				<td th:text="${aOrder.orderDate}"></td>
+				<td th:text="${aOrder.orderStatus}"></td>
+				<td th:text="${aOrder.customerId}"></td>
+				<td th:text="${aOrder.orderAmount}"></td>
+				<td><a th:href="@{/secure/order/}+${aOrder.orderId}">Edit</a></td>
+				<td><a th:href="@{/secure/order/}+${aOrder.orderId}">Delete</a></td>
+			</tr>
+		</table>
+	</div>
+
+
+
+</body>
+
+
+
+</html>

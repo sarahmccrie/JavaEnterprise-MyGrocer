@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Secure Home Page</title>
+		<!-- Author:      Sarah McCrie 991405606
+        Program:      A3_mccries
+        Date:         [11-23-2023]
+        Version:      1.0     
+        Description:  This is my assignment 3
+    -->
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+	<p> Roles:
+		Email: [[${email}]]<br>
+	<ul class="roles-list">
+		<li th:each="role : ${roleList}" th:text="${role}"></li>
+	</ul>
+	</p>
+
+	<div class="linkHolder">
+		<p><a href="#" th:href="@{/secure}">Home</a></p>
+		<p><a href="#" th:href="@{/secure/customer}">Customer </a></p>
+		<p><a href="#" th:href="@{/secure/order}">Order</a></p>
+		<p><a href="#" th:href="@{/secure/product}">Product</a></p>
+		<p><a href="#" th:href="@{/secure/address}">Address</a></p>
+		<p><a href="#" th:href="@{/adminSecure/customerlist}">Customer list</a></p>
+		<p><a href="#" th:href="@{/adminSecure/productlist}">Product list</a></p>
+		<p><a href="#" th:href="@{/secure/shoppingcart}">Shopping cart</a></p>
+		<form method="post" th:action="@{/logout}">
+			<input class="logoutButton" type="submit" value="Logout" />
+		</form>
+	</div>
+
+	<h1>Welcome to MyGrocer!!!</h1>
+	<img class="groceryBanner" th:src="@{/images/groban.jpg}" alt="Grocery Banner" />
+
+</body>
+
+</html>

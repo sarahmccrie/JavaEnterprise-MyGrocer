@@ -1,0 +1,59 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Customer List Page</title>
+	<!-- Author:      Sarah McCrie 991405606
+        Program:      A3_mccries
+        Date:         [11-23-2023]
+        Version:      1.0     
+        Description:  This is my assignment 3
+    -->
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<div class="linkHolder">
+		<p><a href="#" th:href="@{/}">Home</a></p>
+		<p><a href="#" th:href="@{/secure}">Secure home</a></p>
+		<p><a href="#" th:href="@{/secure/customer}">Customer </a></p>
+		<p><a href="#" th:href="@{/secure/order}">Order</a></p>
+		<p><a href="#" th:href="@{/secure/product}">Product</a></p>
+		<p><a href="#" th:href="@{/secure/address}">Address</a></p>
+		<p><a href="#" th:href="@{/adminSecure/customerlist}">Customer list</a></p>
+		<p><a href="#" th:href="@{/adminSecure/productlist}">Product list</a></p>
+		<p><a href="#" th:href="@{/secure/shoppingcart}">Shopping cart</a></p>
+		<form method="post" th:action="@{/logout}">
+			<input class="logoutButton" type="submit" value="Logout" />
+		</form>
+	</div>
+
+	<img class="groceryBanner" th:src="@{/images/groban.jpg}" alt="Grocery Image" />
+	<h1>Customer List</h1>
+	<div>
+		<table>
+			<tr>
+				<th>User ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Delete</th>
+				<th>Edit</th>
+			</tr>
+
+			<tr th:each="aCustomer:${customerlist}">
+				<td th:text="${aCustomer.customerId}"></td>
+				<td th:text="${aCustomer.firstName}"></td>
+				<td th:text="${aCustomer.lastName}"></td>
+				<td><a th:href="@{/adminSecure/deleteCustomerById/}+${aCustomer.userId}">Delete</a></td>
+				<td><a th:href="@{/adminSecure/editCustomerById/}+${aCustomer.userId}">Edit</a></td>
+			</tr>
+		</table>
+	</div>
+
+
+
+</body>
+
+
+
+</html>

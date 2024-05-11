@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Login Page</title>
+		<!-- Author:      Sarah McCrie 991405606
+        Program:      A3_mccries
+        Date:         [11-23-2023]
+        Version:      1.0     
+        Description:  This is my assignment 3
+    -->
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<p><a href="#" th:href="@{/}">Back to home page</a></p>
+	<img class="groceryBanner" th:src="@{/images/groban.jpg}" alt="Grocery Image" />
+	<h1>Login</h1>
+
+	<div class="formarea">
+		<form method="post" th:action="@{/login}">
+			<div th:if="${param.error}">
+				<div>
+					<br>
+					<br>
+					Invalid Credentials! <br>
+					Please try again or <a href="/register"
+						th:href="@{/register}">register now</a>.
+					<br>
+					<br>
+				</div>
+			</div>
+
+			<div th:if="${param.logout}">
+				<div class=success>
+					<br>
+					<br>
+					You have been logged out
+					<br>
+					<br>
+				</div>
+			</div>
+
+			Email: <input type="email" name="username" /><br>
+			Password: <input type="password" name="password" /><br>
+			<input class="loginButton" type="submit" value="Log In" name="login-submit" />
+
+
+		</form>
+	</div>
+
+</body>
+
+</html>
